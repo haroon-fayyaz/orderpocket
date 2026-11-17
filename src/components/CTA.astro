@@ -1,0 +1,56 @@
+---
+import Button from './Button.astro';
+import { playStoreUrl } from '../site';
+---
+
+<section class="cta section">
+  <div class="container cta-card">
+    <div class="cta-copy">
+      <h2 class="display-serif">Ready to stop juggling chat screenshots?</h2>
+      <p>
+        Install OrderPocket on Android, add your first customer, and save an order
+        locally — even with mobile data off.
+      </p>
+    </div>
+    <Button href={playStoreUrl} external size="lg">
+      Get OrderPocket on Google Play
+    </Button>
+  </div>
+</section>
+
+<style>
+  .cta-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: clamp(2rem, 5vw, 3rem);
+    border-radius: var(--radius-xl);
+    background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+    color: #fff;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .cta-copy h2 {
+    color: #fff;
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .cta-copy p {
+    color: rgba(255, 255, 255, 0.88);
+    margin: 0;
+    max-width: 42ch;
+  }
+
+  .cta-card :global(.btn--primary) {
+    background: #fff;
+    color: var(--color-primary-dark);
+  }
+
+  .cta-card :global(.btn--primary:hover) {
+    background: var(--color-primary-light);
+    color: var(--color-primary-dark);
+  }
+</style>

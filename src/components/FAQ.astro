@@ -1,0 +1,79 @@
+---
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: FaqItem[];
+  id?: string;
+}
+
+const { items, id = 'faq' } = Astro.props;
+---
+
+<div class="faq" id={id}>
+  {
+    items.map((item) => (
+      <details class="faq-item">
+        <summary>{item.question}</summary>
+        <div class="faq-answer">
+          <p>{item.answer}</p>
+        </div>
+      </details>
+    ))
+  }
+</div>
+
+<style>
+  .faq {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .faq-item {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    overflow: hidden;
+  }
+
+  summary {
+    padding: 1.1rem 1.25rem;
+    font-weight: 600;
+    color: var(--color-text);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary::after {
+    content: '+';
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  details[open] summary::after {
+    content: '−';
+  }
+
+  .faq-answer {
+    padding: 0 1.25rem 1.15rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .faq-answer p {
+    margin: 1rem 0 0;
+    font-size: 0.9375rem;
+  }
+</style>

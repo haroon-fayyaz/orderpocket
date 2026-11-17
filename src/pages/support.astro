@@ -1,0 +1,197 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import FAQ from '../components/FAQ.astro';
+import type { FaqItem } from '../components/FAQ.astro';
+import { pathTo } from '../lib/url';
+
+const faqs: FaqItem[] = [
+  {
+    question: 'Is there an OrderPocket account or cloud sync for my orders?',
+    answer:
+      'No. Business records (customers, orders, payments, and images you attach) stay on your device. There is no OrderPocket server database. Optional Pro features may connect to your own Google account for form creation and response import — only if you turn that on.',
+  },
+  {
+    question: 'Can OrderPocket read my WhatsApp messages automatically?',
+    answer:
+      'No. OrderPocket does not use Accessibility Services or notification listeners to inspect other apps. Content enters when you type, paste, or use Android’s share sheet to send text or images into OrderPocket.',
+  },
+  {
+    question: 'How do I bring a customer message into an order?',
+    answer:
+      'Three common paths: paste on the review screen, share selected text from another app and pick OrderPocket, or enable clipboard detection in Settings so a prompt may appear while Home is open. In every case you review before saving.',
+  },
+  {
+    question: 'Why does “Add to OrderPocket” not appear in every app?',
+    answer:
+      'The text-selection action depends on each app. It tends to work in browsers and notes apps; WhatsApp and Instagram may not expose the action for every message type. Sharing via the system share sheet is the most reliable fallback.',
+  },
+  {
+    question: 'I lost my data after uninstalling. Can you restore it?',
+    answer:
+      'OrderPocket does not keep a remote copy of your business data. Before uninstalling or resetting a phone, export an encrypted backup from the app and store the file and password somewhere safe. Backups cannot be opened without your password.',
+  },
+  {
+    question: 'How do reminders and notifications work?',
+    answer:
+      'Order scheduling reminders are local notifications on your device. On Android 13+, notification permission is requested when you turn reminders on. Optional product tips use a separate channel and Firebase only after you opt in under Settings → Privacy.',
+  },
+  {
+    question: 'What are Usage analytics and can I turn them off?',
+    answer:
+      'When enabled, the app may send anonymous feature-use events to Google Analytics for Firebase — not order text, customer details, or amounts. You can disable Usage analytics in Settings → Privacy at any time.',
+  },
+  {
+    question: 'Where is the in-app privacy information?',
+    answer:
+      'Open Settings → Privacy and About for on-device explanations of local storage, sharing, backups, and optional Google or Firebase features. This website’s Privacy Policy page summarizes the same topics for store and web visitors.',
+  },
+];
+
+const tips = [
+  {
+    title: 'Back up before a phone upgrade',
+    body: 'Use encrypted export in Settings. Keep both the file and the password you chose — the app cannot recover a lost password.',
+  },
+  {
+    title: 'Try share-first capture',
+    body: 'Long-press a customer message, tap Share, and choose OrderPocket to start a draft order instead of retyping.',
+  },
+  {
+    title: 'Check payment status after edits',
+    body: 'Payment status is calculated from totals and the payments you record. Add refunds when you return money so totals stay honest.',
+  },
+  {
+    title: 'Airplane mode sanity check',
+    body: 'If something fails only online, it is likely Play billing, optional analytics, optional push tips, or optional Google Form sync — not core order saving.',
+  },
+];
+---
+
+<MainLayout
+  title="Support"
+  description="Help using OrderPocket offline on Android — FAQs, troubleshooting, and in-app guidance. No contact form; documentation-only support."
+>
+  <PageHeader
+    eyebrow="Support"
+    title="Help without a ticket queue"
+    description="There is no public support email or contact form for OrderPocket yet. Use the guides below, in-app Settings → Privacy / About, and the Privacy Policy for accurate answers."
+  />
+
+  <section class="section">
+    <div class="container support-grid">
+      <article class="info-card">
+        <h2>Where to find answers</h2>
+        <ul>
+          <li><strong>In the app:</strong> Settings → Privacy, About, and backup sections explain what is stored locally and what is optional.</li>
+          <li><strong>On this site:</strong> <a href={pathTo('/privacy-policy')}>Privacy Policy</a> for data practices.</li>
+          <li><strong>During beta:</strong> Privacy questions go to whoever shared the APK with you, with device model and app version from Settings → About.</li>
+        </ul>
+      </article>
+      <article class="info-card accent">
+        <h2>What we do not offer here</h2>
+        <p>
+          No live chat, no message form, and no published support address. Anything that
+          pretends to send mail would not reach anyone — so this page stays documentation-only.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section-muted" aria-labelledby="faq-heading">
+    <div class="container narrow">
+      <h2 id="faq-heading">Frequently asked questions</h2>
+      <FAQ items={faqs} />
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="tips-heading">
+    <div class="container">
+      <h2 id="tips-heading">Tips & troubleshooting</h2>
+      <ul class="tips">
+        {tips.map((t) => (
+          <li>
+            <h3>{t.title}</h3>
+            <p>{t.body}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .support-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .info-card {
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  .info-card.accent {
+    background: var(--color-primary-light);
+    border-color: transparent;
+  }
+
+  .info-card h2 {
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .info-card ul {
+    margin: 0;
+    padding-left: 1.2rem;
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+  }
+
+  .info-card p {
+    margin: 0;
+    font-size: 0.9375rem;
+  }
+
+  .narrow {
+    max-width: 720px;
+  }
+
+  .narrow h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tips {
+    list-style: none;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+  .tips li {
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+
+  .tips h3 {
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .tips p {
+    margin: 0;
+    font-size: 0.9375rem;
+  }
+
+  .section-muted {
+    background: var(--color-surface-muted);
+  }
+</style>

@@ -1,0 +1,80 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { appName } from '../site';
+import { publicAsset } from '../lib/url';
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  canonicalPath?: string;
+}
+
+const { title, description, canonicalPath = Astro.url.pathname } = Astro.props;
+
+const fullTitle = title === appName ? title : `${title} · ${appName}`;
+const origin = Astro.site ?? 'https://haroonfayyaz.github.io';
+const canonical = new URL(canonicalPath, origin).href;
+const faviconHref = publicAsset('favicon.webp');
+const ogImage = new URL(faviconHref, origin).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={appName} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <link rel="icon" type="image/webp" href={faviconHref} />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Navbar />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  main {
+    flex: 1;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    padding: 0.75rem 1rem;
+    background: var(--color-primary);
+    color: #fff;
+    z-index: 100;
+    border-radius: var(--radius-sm);
+  }
+
+  .skip-link:focus {
+    left: 1rem;
+    top: 1rem;
+  }
+</style>

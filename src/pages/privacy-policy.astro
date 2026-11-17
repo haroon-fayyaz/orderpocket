@@ -1,0 +1,326 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+
+const lastUpdated = 'November 2026';
+
+const sections = [
+  { id: 'introduction', title: 'Introduction' },
+  { id: 'collect', title: 'Information we collect' },
+  { id: 'personal', title: 'Personal & business data on device' },
+  { id: 'automatic', title: 'Automatically collected information' },
+  { id: 'use', title: 'How we use information' },
+  { id: 'storage', title: 'Data storage & security' },
+  { id: 'cookies', title: 'Cookies & this website' },
+  { id: 'third-party', title: 'Third-party services' },
+  { id: 'sharing', title: 'Data sharing' },
+  { id: 'retention', title: 'Data retention' },
+  { id: 'rights', title: 'Your privacy rights' },
+  { id: 'children', title: "Children's privacy" },
+  { id: 'transfers', title: 'International transfers' },
+  { id: 'changes', title: 'Changes to this policy' },
+  { id: 'google', title: 'Optional Google connection (Pro)' },
+];
+---
+
+<MainLayout
+  title="Privacy Policy"
+  description="How OrderPocket handles data on Android — local business records, optional Firebase analytics, and optional Google Form sync."
+>
+  <PageHeader
+    eyebrow="Legal"
+    title="Privacy Policy"
+    description={`Last updated: ${lastUpdated}`}
+  />
+
+  <div class="container policy-layout section">
+    <nav class="toc" aria-label="Table of contents">
+      <h2 class="toc-title">Contents</h2>
+      <ol>
+        {sections.map((s) => (
+          <li>
+            <a href={`#${s.id}`}>{s.title}</a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+
+    <article class="policy prose">
+      <section id="introduction" class="policy-section">
+        <h2>Introduction</h2>
+        <p>
+          OrderPocket is an offline-first Android application for small made-to-order
+          businesses. This Privacy Policy describes how the app and this marketing website
+          handle information. It is written for transparency; only <strong>OrderPocket</strong>
+          can make it binding after legal review.
+        </p>
+        <p>
+          OrderPocket is not directed at children and is intended as a business tool for shop
+          owners and staff using their own devices.
+        </p>
+      </section>
+
+      <section id="collect" class="policy-section">
+        <h2>Information we collect</h2>
+        <p>
+          OrderPocket does not operate a central server that stores your customer list or
+          orders. Most “collection” happens on your phone, under your control.
+        </p>
+      </section>
+
+      <section id="personal" class="policy-section">
+        <h2>Personal & business data on device</h2>
+        <p>When you use the app, you may store locally on your device:</p>
+        <ul>
+          <li>Business profile (name, contact details, defaults)</li>
+          <li>Customers (names, phone numbers, addresses, notes)</li>
+          <li>Products and prices</li>
+          <li>Orders (items, customisation notes, dates, totals, status history)</li>
+          <li>Payments and refunds</li>
+          <li>Reference images you attach to orders</li>
+          <li>Message templates and app settings</li>
+        </ul>
+        <p>
+          This data lives in the app’s private storage and local database. It is not
+          synchronised to servers operated by OrderPocket because no such database exists for
+          your business records.
+        </p>
+      </section>
+
+      <section id="automatic" class="policy-section">
+        <h2>Automatically collected information</h2>
+        <p>
+          <strong>Usage analytics (optional):</strong>
+          If enabled, the app may send anonymous feature-use event counts to Google Analytics
+          for Firebase. Events are designed not to include order text, customer details, or
+          payment amounts. You can disable this in Settings → Privacy.
+        </p>
+        <p>
+          <strong>Product tips &amp; reminders (optional, off by default):</strong> If you
+          opt in, the app may use Firebase Anonymous Auth, Cloud Firestore, and Firebase Cloud
+          Messaging to store a push token, last app open time, app version, and opt-in flag so
+          occasional re-engagement notifications can be sent. No order or customer content is
+          included.
+        </p>
+        <p>
+          <strong>Google Play billing:</strong> Pro purchases are verified through Google Play.
+          Purchase history is handled under Google’s terms.
+        </p>
+        <p>
+          <strong>This website:</strong> The static site does not include analytics or
+          comment forms in the current codebase. If hosting adds server logs, those are governed
+          by your host’s policies.
+        </p>
+      </section>
+
+      <section id="use" class="policy-section">
+        <h2>How we use information</h2>
+        <ul>
+          <li>On-device data powers core app features: orders, calendar, payments, sharing, backups.</li>
+          <li>Optional analytics helps understand which features are used, without order content.</li>
+          <li>Optional push tips remind you about the product — not about specific customers.</li>
+          <li>Optional Google APIs (Pro) create or read forms in <em>your</em> Google account when you connect.</li>
+        </ul>
+      </section>
+
+      <section id="storage" class="policy-section">
+        <h2>Data storage &amp; security</h2>
+        <p>
+          Local records are protected by Android app sandboxing. Encrypted backups are
+          created only when you export them; you choose where the file is stored.
+        </p>
+        <p>
+          Automatic Android backup and cloud device transfer are disabled in the app so
+          customer data is not copied to a Google account without your explicit export.
+        </p>
+      </section>
+
+      <section id="cookies" class="policy-section">
+        <h2>Cookies &amp; tracking technologies</h2>
+        <p>
+          This marketing site is static HTML. It does not set application cookies in the
+          shipped build. Third-party fonts are loaded from Google Fonts; your browser may
+          request those assets directly from Google.
+        </p>
+      </section>
+
+      <section id="third-party" class="policy-section">
+        <h2>Third-party services</h2>
+        <p>Depending on your settings, the app may interact with:</p>
+        <ul>
+          <li>Google Play (distribution and in-app purchases)</li>
+          <li>Google Analytics for Firebase (optional analytics)</li>
+          <li>Firebase Authentication, Firestore, Cloud Messaging (optional product tips)</li>
+          <li>Google Forms API (optional Pro connection to your Google account)</li>
+        </ul>
+        <p>Each provider’s privacy policy applies to data they process on their infrastructure.</p>
+      </section>
+
+      <section id="sharing" class="policy-section">
+        <h2>Data sharing</h2>
+        <p>OrderPocket does not sell your business records.</p>
+        <ul>
+          <li>When you share a confirmation, you choose the destination app; that app’s policy applies afterward.</li>
+          <li>Optional Google Form responses are copied to your device for review; they are not used for advertising.</li>
+        </ul>
+      </section>
+
+      <section id="retention" class="policy-section">
+        <h2>Data retention</h2>
+        <p>
+          Local app data remains until you delete it, clear storage, or uninstall. There is no
+          remote business backup to restore from unless you exported one.
+        </p>
+      </section>
+
+      <section id="rights" class="policy-section">
+        <h2>Your privacy rights</h2>
+        <p>
+          Laws vary by region (for example GDPR, CCPA). Because business records stay on your
+          device, many requests can be fulfilled locally by exporting or deleting your data.
+        </p>
+      </section>
+
+      <section id="children" class="policy-section">
+        <h2>Children's privacy</h2>
+        <p>
+          OrderPocket does not knowingly collect personal information from children. It is a
+          business tool, not directed at children.
+        </p>
+      </section>
+
+      <section id="transfers" class="policy-section">
+        <h2>International data transfers</h2>
+        <p>
+          Optional Firebase and Google services may process data in countries where Google
+          operates. If you are outside those regions, that may constitute an international
+          transfer when optional cloud features are enabled.
+        </p>
+      </section>
+
+      <section id="changes" class="policy-section">
+        <h2>Changes to this policy</h2>
+        <p>
+          Beta builds may change how data is stored or exported. Material changes should appear
+          here and in the in-app About / Privacy screens before wider release. The “Last updated”
+          date at the top will change when edits are published.
+        </p>
+      </section>
+
+      <section id="google" class="policy-section">
+        <h2>Optional Google connection (Pro)</h2>
+        <p>
+          If you tap <strong>Connect Google</strong>, OrderPocket may ask Google for permission
+          to create a Google Form in your account and, only if you enable sync, to read responses
+          to forms OrderPocket created. Requests go between your phone and Google; OrderPocket
+          does not proxy them through its own backend.
+        </p>
+        <p>
+          Access tokens are stored encrypted on your phone, are excluded from backups, and are
+          revoked when you disconnect. OrderPocket’s use of information received from Google APIs
+          adheres to the Google API Services User Data Policy, including Limited Use requirements.
+          Form responses are not used for advertising.
+        </p>
+      </section>
+
+      <section class="policy-section notice">
+        <h2>What OrderPocket does not do</h2>
+        <ul>
+          <li>Require sign-in to an OrderPocket account for core features</li>
+          <li>Read private chat histories or notifications from other apps</li>
+          <li>Request broad storage permissions such as <code>MANAGE_EXTERNAL_STORAGE</code></li>
+          <li>Run advertising based on your customer list</li>
+        </ul>
+      </section>
+    </article>
+  </div>
+</MainLayout>
+
+<style>
+  .policy-layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 3rem;
+    align-items: start;
+    padding-bottom: 4rem;
+  }
+
+  .toc {
+    position: sticky;
+    top: 5.5rem;
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    font-size: 0.875rem;
+  }
+
+  .toc-title {
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .toc ol {
+    margin: 0;
+    padding-left: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .toc a {
+    text-decoration: none;
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  .toc a:hover {
+    color: var(--color-primary);
+  }
+
+  .prose {
+    max-width: 42rem;
+  }
+
+  .policy-section {
+    margin-bottom: 2.5rem;
+    scroll-margin-top: 5rem;
+  }
+
+  .policy-section h2 {
+    font-size: 1.35rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .prose ul {
+    color: var(--color-text-muted);
+    padding-left: 1.25rem;
+  }
+
+  .prose li {
+    margin-bottom: 0.35rem;
+  }
+
+  .notice {
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+    background: var(--color-primary-light);
+  }
+
+  code {
+    font-size: 0.875em;
+  }
+
+  @media (max-width: 900px) {
+    .policy-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .toc {
+      position: static;
+    }
+  }
+</style>

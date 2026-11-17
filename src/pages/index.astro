@@ -1,0 +1,301 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Hero from '../components/Hero.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import CTA from '../components/CTA.astro';
+import { appName } from '../site';
+
+const features = [
+  {
+    icon: 'orders' as const,
+    title: 'Orders & customers in one place',
+    description:
+      'Track products, custom notes, reference photos, fulfilment dates, and status history — stored locally in a Room database on your phone.',
+  },
+  {
+    icon: 'capture' as const,
+    title: 'Capture from chat — on your terms',
+    description:
+      'Paste a message, share text into OrderPocket from another app, or use optional clipboard detection while Home is open. Nothing is saved until you review.',
+  },
+  {
+    icon: 'money' as const,
+    title: 'Payments that add up',
+    description:
+      'Record totals, advances, payments, and refunds in minor units. Payment status is derived from your entries — not a loose guess.',
+  },
+  {
+    icon: 'share' as const,
+    title: 'Confirmations you send',
+    description:
+      'Generate a confirmation message, image, or PDF, then share through Android’s share sheet. OrderPocket never sends messages for you.',
+  },
+  {
+    icon: 'calendar' as const,
+    title: 'Calendar & local reminders',
+    description:
+      'See fulfilment dates on a calendar, set capacity warnings, and get on-device reminders when you enable them.',
+  },
+  {
+    icon: 'privacy' as const,
+    title: 'Private by design',
+    description:
+      'No OrderPocket account. No cloud database for your business records. Optional analytics and product tips are controlled in Settings.',
+  },
+];
+
+const steps = [
+  {
+    n: '1',
+    title: 'Install & set up your business',
+    body: 'Add your business name and defaults. The app works fully offline after install.',
+  },
+  {
+    n: '2',
+    title: 'Bring in an order',
+    body: 'Create an order manually, paste a customer message, or share text from another app into OrderPocket.',
+  },
+  {
+    n: '3',
+    title: 'Review, save, and fulfil',
+    body: 'Attach photos, set dates and payments, save locally, share confirmations, and update status as you work.',
+  },
+];
+---
+
+<MainLayout
+  title={appName}
+  description="Offline-first Android app for home bakers and made-to-order businesses. Turn chat orders into local records, confirmations, and reminders."
+>
+  <Hero />
+
+  <section class="section" aria-labelledby="features-heading">
+    <div class="container">
+      <p class="section-label">Features</p>
+      <h2 id="features-heading">Built for how you actually take orders</h2>
+      <p class="section-lead">
+        OrderPocket targets small made-to-order businesses — especially home bakers and
+        custom cake makers — who today juggle notebooks and chat screenshots.
+      </p>
+      <ul class="feature-grid">
+        {features.map((f) => (
+          <li>
+            <FeatureCard title={f.title} description={f.description} icon={f.icon} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section-muted" aria-labelledby="steps-heading">
+    <div class="container steps">
+      <p class="section-label">How it works</p>
+      <h2 id="steps-heading">From message to record in minutes</h2>
+      <ol class="step-list">
+        {steps.map((s) => (
+          <li class="step">
+            <span class="step-num" aria-hidden="true">{s.n}</span>
+            <div>
+              <h3>{s.title}</h3>
+              <p>{s.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="showcase-heading">
+    <div class="container showcase">
+      <div>
+        <p class="section-label">Product</p>
+        <h2 id="showcase-heading">Your workflow, not a generic CRM</h2>
+        <p class="section-lead">
+          The core loop matches how the Android app is built: select a customer, add
+          products and customisations, set pickup or delivery, record money, save
+          locally, share a confirmation, and stay on top of reminders.
+        </p>
+        <ul class="check-list">
+          <li>Encrypted backup export when you choose</li>
+          <li>Order form templates and QR for customers (you share the link)</li>
+          <li>Pro: monthly insights and optional Google Form sync — opt-in only</li>
+        </ul>
+      </div>
+      <div class="showcase-panel">
+        <h3>What stays on your phone</h3>
+        <ul>
+          <li>Customers, orders, payments, and images you attach</li>
+          <li>Message templates and settings</li>
+          <li>Business profile and calendar capacity</li>
+        </ul>
+        <p class="panel-note">
+          OrderPocket does not run a server that holds your customer list. Uninstalling
+          or clearing app data removes local records unless you exported a backup.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-muted" aria-labelledby="benefits-heading">
+    <div class="container">
+      <p class="section-label">Why OrderPocket</p>
+      <h2 id="benefits-heading">Less chaos, more clarity — without giving up privacy</h2>
+      <div class="benefit-grid">
+        <article>
+          <h3>Offline-first</h3>
+          <p>Airplane mode is a feature, not an edge case. Your shop keeps moving when the network does not.</p>
+        </article>
+        <article>
+          <h3>No secret chat access</h3>
+          <p>OrderPocket cannot read private WhatsApp or Instagram threads. Only what you paste, type, or share enters the app.</p>
+        </article>
+        <article>
+          <h3>You control optional cloud bits</h3>
+          <p>Usage analytics defaults on but can be disabled in Settings. Product tips and Google Form sync are separate opt-ins.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</MainLayout>
+
+<style>
+  h2 {
+    font-size: clamp(1.65rem, 3.5vw, 2.15rem);
+    max-width: 22ch;
+    margin-bottom: 1rem;
+  }
+
+  .section-lead {
+    max-width: 58ch;
+    font-size: 1.0625rem;
+    margin-bottom: 2rem;
+  }
+
+  .feature-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .section-muted {
+    background: var(--color-surface-muted);
+  }
+
+  .step-list {
+    list-style: none;
+    margin: 2rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.25rem;
+    align-items: start;
+    padding: 1.35rem;
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+  }
+
+  .step-num {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: grid;
+    place-items: center;
+    border-radius: var(--radius-md);
+    background: var(--color-primary);
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .step h3 {
+    font-size: 1.0625rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .step p {
+    margin: 0;
+    font-size: 0.9375rem;
+  }
+
+  .showcase {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .check-list {
+    margin: 0;
+    padding-left: 1.2rem;
+    color: var(--color-text-muted);
+  }
+
+  .check-list li {
+    margin-bottom: 0.5rem;
+  }
+
+  .showcase-panel {
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+  }
+
+  .showcase-panel h3 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .showcase-panel ul {
+    margin: 0 0 1rem;
+    padding-left: 1.2rem;
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+  }
+
+  .panel-note {
+    font-size: 0.875rem;
+    margin: 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .benefit-grid article {
+    padding: 1.35rem;
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  .benefit-grid h3 {
+    font-size: 1.0625rem;
+  }
+
+  .benefit-grid p {
+    margin: 0;
+    font-size: 0.9375rem;
+  }
+
+  @media (max-width: 800px) {
+    .showcase {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

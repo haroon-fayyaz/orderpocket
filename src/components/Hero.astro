@@ -1,0 +1,101 @@
+---
+import Button from './Button.astro';
+import PhonePreview from './PhonePreview.astro';
+import { playStoreUrl } from '../site';
+import { pathTo } from '../lib/url';
+---
+
+<section class="hero section">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="section-label">Offline-first · Android</p>
+      <h1 class="hero-title display-serif">
+        Own every custom order — not another lost chat thread.
+      </h1>
+      <p class="hero-lead">
+        OrderPocket helps home bakers and small made-to-order food businesses turn
+        WhatsApp, Instagram, and phone orders into clear local records: customers,
+        dates, payments, confirmations, and reminders — without a backend or account.
+      </p>
+      <div class="hero-actions">
+        <Button href={playStoreUrl} external size="lg">Download on Google Play</Button>
+        <Button href={pathTo('/support')} variant="secondary" size="lg">How to get help</Button>
+      </div>
+      <p class="hero-footnote">
+        Works in airplane mode. Your business data stays on your device.
+      </p>
+    </div>
+    <div class="hero-visual">
+      <div class="glow"></div>
+      <PhonePreview />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-top: clamp(2.5rem, 6vw, 4rem);
+    padding-bottom: clamp(3rem, 7vw, 5rem);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  .hero-title {
+    font-size: clamp(2.35rem, 5.5vw, 3.35rem);
+    line-height: 1.08;
+    margin-bottom: 1.25rem;
+    color: var(--color-text);
+  }
+
+  .hero-lead {
+    font-size: 1.125rem;
+    max-width: 48ch;
+    margin-bottom: 1.75rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-footnote {
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  .hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .glow {
+    position: absolute;
+    inset: 10% 5%;
+    background: radial-gradient(ellipse at center, var(--color-primary-light), transparent 70%);
+    filter: blur(24px);
+    z-index: 0;
+  }
+
+  .hero-visual :global(.phone) {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-visual {
+      order: -1;
+    }
+  }
+</style>

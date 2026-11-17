@@ -1,0 +1,100 @@
+---
+import { appName, appTagline } from '../site';
+import icon from '../assets/icon.webp';
+import { pathTo } from '../lib/url';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href={pathTo('/')}>
+        <img src={icon.src} width={40} height={40} alt="" />
+        <span>{appName}</span>
+      </a>
+      <p class="footer-tagline">{appTagline}</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer">
+      <ul>
+        <li><a href={pathTo('/')}>Home</a></li>
+        <li><a href={pathTo('/support')}>Support</a></li>
+        <li><a href={pathTo('/privacy-policy')}>Privacy Policy</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="container footer-bottom">
+    <p>&copy; {year} {appName}. Android app for made-to-order businesses.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    margin-top: auto;
+    border-top: 1px solid var(--color-border);
+    background: var(--color-surface);
+    padding-block: 3rem 1.5rem;
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: start;
+    padding-bottom: 2rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .brand img {
+    border-radius: 10px;
+  }
+
+  .footer-tagline {
+    max-width: 36ch;
+    margin: 0;
+    font-size: 0.9375rem;
+  }
+
+  .footer-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-nav a {
+    text-decoration: none;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    font-size: 0.9375rem;
+  }
+
+  .footer-nav a:hover {
+    color: var(--color-primary);
+  }
+
+  .footer-bottom p {
+    margin: 0;
+    font-size: 0.8125rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 640px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
