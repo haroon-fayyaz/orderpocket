@@ -6,9 +6,9 @@ Static site for the OrderPocket Android app. Deployed via **GitHub Actions** to 
 
 Monorepo project site:
 
-**https://haroonfayyaz.github.io/order-pocket/**
+**https://haroonfayyaz.github.io/orderpocket/**
 
-(Privacy policy URL for Play Console: `…/order-pocket/privacy-policy/`)
+(Privacy policy URL for Play Console: `…/orderpocket/privacy-policy/`)
 
 ## Custom domain later
 
@@ -39,7 +39,7 @@ npm run dev
 Preview the same path layout as GitHub Pages:
 
 ```bash
-GITHUB_PAGES_USER=haroonfayyaz GITHUB_PAGES_REPO=order-pocket npm run build
+GITHUB_PAGES_USER=haroonfayyaz GITHUB_PAGES_REPO=orderpocket npm run build
 npm run preview
 ```
 

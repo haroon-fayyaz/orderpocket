@@ -5,8 +5,10 @@ import { defineConfig } from 'astro/config';
 // Set CUSTOM_DOMAIN=true in CI when GitHub Pages serves a custom domain at the root.
 const useCustomDomain = process.env.CUSTOM_DOMAIN === 'true';
 
-const githubUser = process.env.GITHUB_PAGES_USER ?? 'haroonfayyaz';
-const githubRepo = process.env.GITHUB_PAGES_REPO ?? 'order-pocket';
+const [repoOwner, repoName] = process.env.GITHUB_REPOSITORY?.split('/') ?? [];
+
+const githubUser = process.env.GITHUB_PAGES_USER ?? repoOwner ?? 'haroon-fayyaz';
+const githubRepo = process.env.GITHUB_PAGES_REPO ?? repoName ?? 'orderpocket';
 
 // https://astro.build/config
 export default defineConfig({
